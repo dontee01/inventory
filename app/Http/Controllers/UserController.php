@@ -47,7 +47,7 @@ class UserController extends Controller
     }
     else
     {
-      $request->session()->flash('login_status', 'Login Failed!');
+      $request->session()->flash('flash_message', 'Login Failed!');
       return redirect('/');
       // ->withInput($request->all());
     }

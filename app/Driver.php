@@ -27,7 +27,5 @@ class Driver extends Model
     protected $guarded = ['id'];
     // protected $fillable = array('name', 'email');
 
-    public static $rules = ['d_name' => 'required']
-        // 'email' => 'required|email|min:5'
-    );
+    public static $rules = ['d_name' => 'required'];
 }

@@ -9,7 +9,8 @@
                         </a>
                     </div>
                 </div>
-                <a class="navbar-brand" id="home" href="#home">
+                <a class="navbar-brand" id="home" >
+                POS
                 </a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">

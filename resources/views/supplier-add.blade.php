@@ -9,8 +9,19 @@
         @include('common.errors')
 
         @if (Session::has('flash_message'))
-        <div class="alert alert-danger">
+        <div align="center" class="alert alert-danger alert-dismissable mw800 center-block">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true" color="blue">x</button>
             <strong>{{Session::get('flash_message')}}</strong>
+
+            <br><br>
+
+        </div>
+        @endif
+
+        @if (Session::has('flash_message_success'))
+        <div align="center" class="alert alert-success alert-dismissable mw800 center-block">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true" color="blue">x</button>
+            <strong>{{Session::get('flash_message_success')}}</strong>
 
             <br><br>
 

@@ -1,54 +1,131 @@
-@extends('layouts.layout')
-@section('title', '::.Login')
-@section('content')
+<!DOCTYPE html>
+<html lang="en">
 
-<div class="container-center animated slideInDown">
+    <head>
 
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>POS ::.Login</title>
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+        <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="assets/css/form-elements.css">
+        <link rel="stylesheet" href="assets/css/style.css">
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <!-- Favicon and touch icons -->
+        <link rel="shortcut icon" href="assets/ico/favicon.png">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
+
+    </head>
+
+    <body>
+
+        <!-- Top content -->
+        <div class="top-content">
+            
+            <div class="inner-bg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-8 col-sm-offset-2 text">
+                            <h1><strong>Login</strong></h1>
+                            <div class="description">
 
         <!-- Display Validation Errors -->
         @include('common.errors')
 
-        @if (Session::has('login_status'))
-        <div class="alert alert-danger">
-            <strong>{{Session::get('login_status')}}</strong>
+        @if (Session::has('flash_message'))
+        <div align="center" class="alert alert-danger alert-dismissable mw800 center-block">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true" color="blue">x</button>
+            <strong>{{Session::get('flash_message')}}</strong>
 
             <br><br>
 
         </div>
         @endif
-            <div class="view-header">
-                <div class="header-icon">
-                    <i class="pe page-header-icon pe-7s-unlock"></i>
-                </div>
-                <div class="header-title">
-                    <h3>Login</h3>
-                    <small>
-                        Please enter your credentials to login.
-                    </small>
-                </div>
-            </div>
 
-            <div class="panel panel-filled">
-                <div class="panel-body">
-                    <form action="{{ url('/') }}" id="loginForm" method="POST" novalidate>
-                    {{ csrf_field() }}
-                        <div class="form-group">
-                            <label class="control-label" for="username">Username</label>
-                            <input type="text" placeholder="Username" title="Please enter you username" required="" value="" name="username" id="username" class="form-control">
-                            <span class="help-block small">Your unique username</span>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label" for="password">Password</label>
-                            <input type="password" title="Please enter your password" placeholder="******" required="" value="" name="password" id="password" class="form-control">
-                            <!-- <span class="help-block small">Your strong password</span> -->
-                        </div>
-                        <div>
-                            <button type="submit" class="btn btn-accent">Login</button>
-                            <!-- <a class="btn btn-default" href="register.html">Register</a> -->
-                        </div>
-                    </form>
-                </div>
-            </div>
+        @if (Session::has('flash_message_success'))
+        <div align="center" class="alert alert-success alert-dismissable mw800 center-block">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true" color="blue">x</button>
+            <strong>{{Session::get('flash_message_success')}}</strong>
+
+            <br><br>
 
         </div>
-@endsection
+        @endif
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 col-sm-offset-3 form-box">
+                            <div class="form-top">
+                                <div class="form-top-left">
+                                    <h3>Enter your credentials</h3>
+                                </div>
+                                <div class="form-top-right">
+                                    <i class="fa fa-key"></i>
+                                </div>
+
+
+                <!-- <div align="center" class="form-group w-icon">
+                <span>Already have a Map Account?</span> -->
+
+                    
+      <p class="message"><strong>Not registered? <a href="{{url('register')}}">Create an account</a></strong></p>
+                <!-- </div> -->
+                <div id="err" class="error-message">
+                <p id="cont"></p>
+                </div>
+                            </div>
+                            <div class="form-bottom">
+                                <form role="form" id="fm-signin" action="{{url('/')}}" method="post" class="login-form">
+                                {{csrf_field()}}
+                                    <div class="form-group">
+                                        <label class="sr-only" for="username">Username</label>
+                                        <input type="text" name="username" placeholder="Username..." class="form-username form-control" id="username">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="sr-only" for="password">Password</label>
+                                        <input type="password" name="password" placeholder="Password..." class="form-password form-control" id="password">
+                                    </div>
+
+                                    <button id="log" type="submit" class="btn">Sign in!</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+
+        <!-- Javascript -->
+        <script src="assets/js/jquery-1.11.1.min.js"></script>
+        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="assets/js/jquery.backstretch.min.js"></script>
+        <script src="assets/js/scripts.js"></script>
+
+        <!-- <script src="res/js/map.js"></script> -->
+        
+        
+        <!--[if lt IE 10]>
+            <script src="assets/js/placeholder.js"></script>
+        <![endif]-->
+
+    </body>
+
+</html>

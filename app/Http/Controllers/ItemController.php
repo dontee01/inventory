@@ -98,7 +98,7 @@ class ItemController extends Controller
 
 		$request->session()->flash('flash_message', 'Item Added');
 	    // return $this->index();
-	    return redirect('/items');->withInput();
+	    return redirect('/items')->withInput();
 	    // print_r($item_arr);exit;
     	// return view('item', ['items' => $items]);
     }

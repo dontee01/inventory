@@ -78,6 +78,10 @@
 
 {!!Html::script('vendor/flot/jquery.flot.spline.js')!!}
 
+
+
+{!!Html::script('js/app.js')!!}
+
 <!-- App scripts -->
 <!-- <script src="scripts/luna.js"></script>
 
@@ -87,7 +91,7 @@
 
 <!--<script src="res/js/messages.js"></script>-->
 
-<!-- <script src="res/js/bbn.js"></script> -->
+<!-- <script src="js/app.js"></script> -->
 
 <script>
 

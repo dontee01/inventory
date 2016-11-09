@@ -92,8 +92,7 @@ class Custom
 
     function hashh($em,$date)
     {
-        $sto = "AGLRSTabcUVWXYZdefBCDEFghijkmnop
-                qHIJKrstuvwxyz1023MNOPQ456789";
+        $sto = "AGLRSTabcUVWXYZdefBCDEFghijkmnopqHIJKrstuvwxyz1023MNOPQ456789";
         $str_em = substr(md5($em.$sto), 1,9);
         srand((double)microtime()*1000000);
         $a = explode(":", $date);
