@@ -16,6 +16,7 @@ class CreateCartsTable extends Migration
             $table->increments('id');
             $table->integer('store_users_id');
             $table->integer('sales_users_id');
+            $table->integer('item_id');
             $table->string('transaction_ref');
             $table->string('cart_session');
             $table->string('d_name');

@@ -12,7 +12,7 @@ class Sales_log extends Model
      * @var array
      */
     protected $fillable = [
-        'transaction_ref', 'users_id', 'd_name', 'i_name', 'is_rgb', 'qty', 'qty_bottle', 'qty_content', 'total', 'amount_paid'
+        'transaction_ref', 'users_id', 'item_id', 'd_name', 'i_name', 'is_rgb', 'qty', 'qty_bottle', 'qty_content', 'total', 'amount_paid'
     ];
 
     /**
@@ -27,7 +27,5 @@ class Sales_log extends Model
     protected $guarded = ['id'];
     // protected $fillable = array('name', 'email');
 
-    public static $rules = ['i_name' => 'required']
-        // 'email' => 'required|email|min:5'
-    );
+    public static $rules = ['i_name' => 'required'];
 }

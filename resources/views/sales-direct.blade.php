@@ -48,7 +48,7 @@
                         <select class="form-control" onchange="location = this.value;">
                             <option value="">Select an item</option>
                         @foreach($items as $item)
-                            <option value="{{url('order/'.$item['id'])}}">{{$item['i_name']}}</option>
+                            <option value="{{url('sales/individual/'.$item['id'])}}">{{$item['i_name']}}</option>
                         @endforeach
                         </select>
                     </div>
@@ -61,9 +61,9 @@
 
         <div class="col-md-9">
             <h1>Inventory App</h1>
-            <form action="{{url('cart/add')}}" method="post">
+            <form action="{{url('sales/cart/add')}}" method="post">
             {{csrf_field()}}
-
+            @if(count($details) != 0)
                 <div class=" form-inline">
                     <div class="form-group form-group-sm">
                     <select class="input-sm " title="Select a customer" name="customer" required="required">
@@ -77,12 +77,10 @@
 
                     <div class="form-group form-group-sm">
                     <select class="input-sm " title="Select a driver" name="driver" required="required">
-                        <option value="">Select Driver</option>
-                        @foreach($drivers as $driver)
-                            <option value="{{$driver->d_name}}">{{$driver->d_name}}</option>
-                        @endforeach
+                        <!-- <option value="">Select Driver</option> -->
+                            <option value="Individual">Individual</option>
                     </select>
-                    <span class="help-block small">Choose a driver</span>
+                    <!-- <span class="help-block small">Choose a driver</span> -->
                     </div>
                     
                     <input class="input-sm" type="hidden" name="is_rgb" id="add-quantity-is-rgb" readonly="readonly" value="{{$details->is_rgb}}" />
@@ -128,6 +126,7 @@
                         <span class="help-block small">Sub Total</span>
                     </div>
                 </div>
+            @endif
 
                 <div class="form-group form-group-sm">
                     <button class="btn btn-default btn-rounded btn-block" id="add-to-cart" type="submit">Add To Cart</button>

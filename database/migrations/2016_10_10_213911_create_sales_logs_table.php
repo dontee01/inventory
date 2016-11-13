@@ -15,6 +15,7 @@ class CreateSalesLogsTable extends Migration
         Schema::create('sales_logs', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('users_id');
+            $table->integer('item_id');
             $table->string('d_name');
             $table->string('transaction_ref');
             $table->string('i_name');

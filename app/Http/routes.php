@@ -98,6 +98,39 @@ Route::get('/order', 'OrderController@index');
 Route::get('/order/{id}', 'OrderController@populate');
 
 
+Route::get('/cart', 'CartController@index');
+
 Route::post('/cart/add', 'CartController@add');
+
+Route::get('/cart/checkout/{id}', 'CartController@show_checkout');
+
+Route::post('/cart/checkout', 'CartController@checkout');
+
+Route::post('/cart/delete/{id}', 'CartController@delete');
+
+
+Route::get('/pending', 'Pending_orderController@index');
+
+Route::get('/pending/{id}', 'Pending_orderController@show_order');
+
+Route::post('/pending/checkout/{id}', 'Pending_orderController@checkout');
+
+
+Route::get('/sales', 'SalesController@index');
+
+Route::get('/sales/{transaction_ref}', 'SalesController@show_order');
+
+Route::post('/sales/checkout/{transaction_ref}', 'SalesController@checkout');
+
+Route::get('/sales/individual', 'SalesController@individual');
+
+Route::get('/sales/individual/{id}', 'SalesController@populate');
+
+Route::get('/sales/cart/add', 'SalesController@cart_add');
+
+Route::get('/print', function () {
+    return view('print-store');
+});
+
 
 // Route::resource('users', 'UserController');

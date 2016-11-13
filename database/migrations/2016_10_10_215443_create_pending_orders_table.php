@@ -16,6 +16,7 @@ class CreatePendingOrdersTable extends Migration
             $table->increments('id');
             $table->integer('store_users_id');
             $table->integer('sales_users_id');
+            $table->integer('item_id');
             $table->string('transaction_ref');
             $table->string('d_name');
             $table->string('i_name');
@@ -29,6 +30,7 @@ class CreatePendingOrdersTable extends Migration
             $table->decimal('price_unit', 10, 2);
             $table->decimal('price_total', 10, 2);
             $table->tinyInteger('is_confirmed');
+            $table->tinyInteger('deleted');
             // $table->rememberToken();
             $table->timestamps();
         });
