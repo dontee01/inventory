@@ -118,7 +118,7 @@ Route::post('/pending/checkout/{id}', 'Pending_orderController@checkout');
 
 Route::get('/sales', 'SalesController@index');
 
-Route::get('/sales/{transaction_ref}', 'SalesController@show_order');
+Route::get('/sales/transaction/{transaction_ref}', 'SalesController@show_order');
 
 Route::post('/sales/checkout/{transaction_ref}', 'SalesController@checkout');
 
@@ -126,7 +126,31 @@ Route::get('/sales/individual', 'SalesController@individual');
 
 Route::get('/sales/individual/{id}', 'SalesController@populate');
 
-Route::get('/sales/cart/add', 'SalesController@cart_add');
+Route::post('/sales/cart/add', 'SalesController@cart_add');
+
+Route::get('/sales/cart', 'SalesController@cart_show');
+
+Route::post('/sales/cart/delete/{id}', 'SalesController@cart_delete');
+
+Route::post('/sales/cart/checkout', 'SalesController@cart_checkout');
+
+
+
+Route::get('/purchase', 'PurchaseController@index');
+
+Route::get('/purchase/show/{id}', 'PurchaseController@populate');
+
+Route::get('/purchase/cart', 'PurchaseController@cart_show');
+
+Route::post('/purchase/cart/add', 'PurchaseController@cart_add');
+
+Route::post('/sales/cart/checkout', 'SalesController@cart_checkout');
+
+// Route::get('/purchase/transaction/{transaction_ref}', 'PurchaseController@show_order');
+
+Route::post('/purchase/cart/delete/{id}', 'PurchaseController@cart_delete');
+
+
 
 Route::get('/print', function () {
     return view('print-store');

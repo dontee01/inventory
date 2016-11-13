@@ -50,7 +50,7 @@ class CartController extends Controller
         else
         {
             // redirect if cart session does not exist
-            $request->session()->flash('flash_message', 'Cart is empty');
+            session()->flash('flash_message', 'Cart is empty');
             return redirect('/order');
         }
 
@@ -183,6 +183,7 @@ class CartController extends Controller
         }
 
         \Session::forget('cart_session');
+        \Session::forget('transaction_ref');
 
         $request->session()->flash('flash_message', 'Ensure to print this invoice before navigating away');
         return view('print-store', ['cart_items' => $result, 'price_total' => $total]);

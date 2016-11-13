@@ -34,10 +34,10 @@
                             <img src="images/profile.jpg" class="img-circle" alt="">
                         </a>
                         <ul class="dropdown-menu">
-                            <li><div class="icon-example-name bal" href="#">Balance <span id="balance" class="dash-foot-exec"> </span>
+                            <!-- <li><div class="icon-example-name bal" href="#">Balance <span id="balance" class="dash-foot-exec"> </span>
                                     <span><button class="btn btn-sm btn-danger" href="#recharge">Top Up</button></span>
                                 </div>
-                            </li>
+                            </li> -->
                             <li class="divider"></li>
                             <li><a class="icon-person" href="#">Profile</a></li>
                             <li><a class="icon-settings" href="#">Settings</a></li>

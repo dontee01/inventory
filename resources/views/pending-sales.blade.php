@@ -58,13 +58,14 @@
                                 <div class="panel">
                                     <div class="panel-body">
                                         <p>Item : {{$porder['i_name']}} <br />
-                                        Transaction Ref : {{$porder['transaction_ref']}} 
+                                        Transaction Ref : {{$porder['transaction_ref']}} <br />
+                                        Name : {{$porder['d_name']}}
                                         </p>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <a class="btn btn-default" href="{{url('sales/'.$porder['transaction_ref'])}}">Process</a>
+                                <a class="btn btn-default" href="{{url('sales/transaction/'.$porder['transaction_ref'])}}">Process</a>
                             </div>
                         </div>
                         @endforeach

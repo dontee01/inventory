@@ -1,5 +1,5 @@
 @extends('layouts.layout')
-@section('title', '::.Order')
+@section('title', '::.Purchase')
 @section('content')
 
 
@@ -48,7 +48,7 @@
                         <select class="form-control" onchange="location = this.value;">
                             <option value="">Select an item</option>
                         @foreach($items as $item)
-                            <option value="{{url('sales/individual/'.$item['id'])}}">{{$item['i_name']}}</option>
+                            <option value="{{url('purchase/'.$item['id'])}}">{{$item['i_name']}}</option>
                         @endforeach
                         </select>
                     </div>
@@ -61,27 +61,27 @@
 
         <div class="col-md-9">
             <h1>Inventory App</h1>
-            <form action="{{url('sales/cart/add')}}" method="post">
+            <form action="{{url('purchase/cart/add')}}" method="post">
             {{csrf_field()}}
             @if(count($details) != 0)
                 <div class=" form-inline">
                     <div class="form-group form-group-sm">
-                    <select class="input-sm " title="Select a customer" name="customer" required="required">
-                        <option value="">Select Customer</option>
-                        @foreach($customers as $customer)
-                            <option value="{{$customer->c_name}}">{{$customer->c_name}}</option>
+                    <select class="input-sm " title="Select a supplier" name="supplier" required="required">
+                        <option value="">Select Supplier</option>
+                        @foreach($suppliers as $supplier)
+                            <option value="{{$supplier->s_name}}">{{$supplier->s_name}}</option>
                         @endforeach
                     </select>
-                    <span class="help-block small">Choose a customer</span>
+                    <span class="help-block small">Choose a supplier</span>
                     </div>
 
-                    <div class="form-group form-group-sm">
+                    <!-- <div class="form-group form-group-sm">
                     <select class="input-sm " title="Select a driver" name="driver" required="required">
-                        <!-- <option value="">Select Driver</option> -->
+                        <option value="">Select Driver</option>
                             <option value="Individual">Individual</option>
                     </select>
                     <span class="help-block small">&nbsp;</span>
-                    </div>
+                    </div> -->
                     
                     <input class="input-sm" type="hidden" name="is_rgb" id="add-quantity-is-rgb" readonly="readonly" value="{{$details->is_rgb}}" />
                     <input class="input-sm" type="hidden" name="item_id" id="add-quantity-is-item-id" readonly="readonly" value="{{$details->id}}" />
@@ -96,6 +96,15 @@
                     <div class="form-group form-group-sm">
                         <input class="input-sm" type="text" name="quantity_content" id="add-quantity-content" title="Quantity" readonly="readonly" value="{{$details->qty_content}}" />
                         <span class="help-block small">Bottles with Content Left</span>
+                    </div>
+
+                    <div class="form-group form-group-sm">
+                    <select class="input-sm " title="Select an exchange mode" name="no_exhange" required="required">
+                        <option value="">Select an exchange mode</option>
+                            <option value="exchange-bottle">Exchange Bottle</option>
+                            <option value="no-exchange">No Exchange</option>
+                    </select>
+                    <span class="help-block small">&nbsp;</span>
                     </div>
                     @endif
 
@@ -117,7 +126,7 @@
                 <div class=" form-inline">
 
                     <div class="form-group form-group-sm">
-                        <input class="input-sm" type="text" v-model="price" name="price" id="add-quantity-price" title="Unit Price" readonly="readonly" value="{{$details->price_unit}}" required="required" />
+                        <input class="input-sm" type="text" v-model="price" name="price" id="add-quantity-price" title="Unit Price" value="{{$details->price_unit}}" required="required" />
                         <span class="help-block small">Unit Price</span>
                     </div>
 

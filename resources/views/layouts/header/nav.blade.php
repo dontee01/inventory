@@ -26,6 +26,7 @@
                         <li><a class="icon-send_2" id="sent" href="{{url('order')}}">Order</a></li>
                         <li><a class="icon-send_2" id="sent" href="{{url('pending')}}">Pending Orders</a></li>
                         <li><a class="icon-send_2" id="sent" href="{{url('sales')}}">Pending Sales</a></li>
+                        <li><a class="icon-send_2" id="sent" href="{{url('sales/individual')}}">Individual Sales</a></li>
                         <li><a class="icon-send_2" id="sent" href="{{url('print')}}">Print</a></li>
                             <li><a class="icon-notifications_on" id="notifications" href="#notifications">Notifications</a></li>
                     </ul>

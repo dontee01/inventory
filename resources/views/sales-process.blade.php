@@ -33,6 +33,11 @@
 
 <div class="row">
 
+@if(count($orders) == 0)
+    <div class="col-md-9">
+    <h1>Cart is empty</h1>
+    </div>
+@else
     <div class="col-md-9">
 
         <div class="row">
@@ -41,10 +46,6 @@
             <h1>Inventory App</h1>
 
             <div class="m-t-sm">
-                @if(count($orders) != 0)
-                <!-- <div class="small">
-                Cart is empty
-                </div> -->
                 <table class="table table-hover table-striped" id="table-custom">
                     <thead>
                     <tr>
@@ -76,7 +77,6 @@
                 <div class="form-group form-group-sm">
                     <!-- <button class="btn btn-danger btn-rounded btn-block" id="add-to-cart" type="submit">Checkout</button> -->
                 </div>
-                @endif
 
             </div>
 
@@ -102,7 +102,7 @@
                         </div>
                         <div class="m-t-sm">
                           
-                        <form action="{{url('sales/checkout/'.$order['transaction_ref'])}}" method="post">
+                        <form action="{{url('sales/checkout/'.$transaction_ref)}}" method="post">
                         {{csrf_field()}}
                             <div class=" form-inline">
 
@@ -111,12 +111,12 @@
                                     <span class="help-block small">Total</span>
                                 </div>
                                 <div class="form-group form-group-sm">
-                                    <input class="input-sm" type="text" name="amount" id="check-quantity-bottle" title="Quantity" required="required" value="0" />
+                                    <input class="input-sm" type="text" name="amount" id="check-quantity-bottle" title="Quantity" required="required" />
                                     <span class="help-block small">Amount Paid</span>
                                 </div>
 
 
-                                <input class="input-sm" type="hidden" name="d_name" id="check-quantity-is-rgb" readonly="readonly" value="{{$order['d_name']}}" />
+                                <input class="input-sm" type="hidden" name="d_name" id="check-quantity-is-rgb" readonly="readonly" value="{{$d_name}}" />
 
                             </div>
 
@@ -136,6 +136,7 @@
 
 
     </div>
+@endif
     <!-- end main col-8 -->
 
 
