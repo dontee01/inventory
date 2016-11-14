@@ -15,18 +15,18 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <div class="left-nav-toggle">
-                    <a href="">
+                    <a >
                         <i class="stroke-hamburgermenu"></i>
                     </a>
                 </div>
                 <form class="navbar-form navbar-left">
-                    <input type="text" class="form-control" placeholder="Search Messages & Contacts" style="width: 175px">
+                    <!-- <input type="text" class="form-control" placeholder="Search Messages & Contacts" style="width: 175px"> -->
                 </form>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a  ><i class="material-icons">notifications_active</i>
+                        <!-- <a  ><i class="material-icons">notifications_active</i>
                             <span class="label label-warning pull-right" id="notif-total"></span>
-                        </a>
+                        </a> -->
                     </li>
                     <li class=" profil-link">
                         <a data-toggle="dropdown" class="">

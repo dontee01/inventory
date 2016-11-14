@@ -2,7 +2,7 @@
     <aside class="navigation">
         <nav>
             <div class="sidebar content-box-compose">
-                <button id="compose" class="btn btn-lg btn-danger" data-toggle="modal" data-target="#myModal">Test</button>
+                <!-- <button id="compose" class="btn btn-lg btn-danger" data-toggle="modal" data-target="#myModal">Test</button> -->
             </div>
 
             <?php
@@ -28,7 +28,7 @@
                         <li><a class="icon-send_2" id="sent" href="{{url('sales')}}">Pending Sales</a></li>
                         <li><a class="icon-send_2" id="sent" href="{{url('sales/individual')}}">Individual Sales</a></li>
                         <li><a class="icon-send_2" id="sent" href="{{url('purchase')}}">Purchase</a></li>
-                        <li><a class="icon-send_2" id="sent" href="{{url('print')}}">Print</a></li>
+                        <!-- <li><a class="icon-send_2" id="sent" href="{{url('print')}}">Print</a></li> -->
                     </ul>
                 </li>
 
@@ -55,9 +55,9 @@
                     <span class="sub-nav-icon"> <i class="stroke-arrow"></i> </span>
                     </a>
                     <ul id="tables" class="nav nav-second collapse nav-load">
-                            <li><a class="icon-credit_card" id="recharge" href="#recharge">Recharge</a></li>
+                            <!-- <li><a class="icon-credit_card" id="recharge" href="#recharge">Recharge</a></li>
                             <li><a  class="icon-share_alt" id="share-credit" href="#share-credit">Share Credits</a></li>
-                            <li><a class="icon-settings" id="settings" href="#settings">Settings</a></li>
+                            <li><a class="icon-settings" id="settings" href="#settings">Settings</a></li> -->
                             <li><a class="icon-exit_to_app" id="logout" href="{{url('logout')}}">Logout</a></li>
                     </ul>
                 </li>
