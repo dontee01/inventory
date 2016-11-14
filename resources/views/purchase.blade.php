@@ -48,7 +48,7 @@
                         <select class="form-control" onchange="location = this.value;">
                             <option value="">Select an item</option>
                         @foreach($items as $item)
-                            <option value="{{url('purchase/'.$item['id'])}}">{{$item['i_name']}}</option>
+                            <option value="{{url('purchase/show/'.$item['id'])}}">{{$item['i_name']}}</option>
                         @endforeach
                         </select>
                     </div>
@@ -99,10 +99,10 @@
                     </div>
 
                     <div class="form-group form-group-sm">
-                    <select class="input-sm " title="Select an exchange mode" name="no_exhange" required="required">
+                    <select class="input-sm " title="Select an exchange mode" name="purchase_type" required="required">
                         <option value="">Select an exchange mode</option>
-                            <option value="exchange-bottle">Exchange Bottle</option>
-                            <option value="no-exchange">No Exchange</option>
+                            <option value="1">Exchange Bottle</option>
+                            <option value="0">No Exchange</option>
                     </select>
                     <span class="help-block small">&nbsp;</span>
                     </div>
@@ -182,7 +182,7 @@
                 </div><br />
 
                 @endif
-                <a class="btn btn-default btn-rounded" href="{{url('sales/cart')}}">View Cart</a>
+                <a class="btn btn-default btn-rounded" href="{{url('purchase/cart')}}">View Cart</a>
                 </div>
             </div>
         </div>

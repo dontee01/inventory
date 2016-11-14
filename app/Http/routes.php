@@ -144,7 +144,7 @@ Route::get('/purchase/cart', 'PurchaseController@cart_show');
 
 Route::post('/purchase/cart/add', 'PurchaseController@cart_add');
 
-Route::post('/sales/cart/checkout', 'SalesController@cart_checkout');
+Route::post('/purchase/cart/checkout', 'PurchaseController@cart_checkout');
 
 // Route::get('/purchase/transaction/{transaction_ref}', 'PurchaseController@show_order');
 
