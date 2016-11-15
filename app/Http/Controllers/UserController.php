@@ -21,7 +21,10 @@ class UserController extends Controller
    */
   public function index()
   {
-
+    if(\Session::has('id'))
+    {
+      return redirect('home');
+    }
     // $users = User::all();
     return view('login');
   }

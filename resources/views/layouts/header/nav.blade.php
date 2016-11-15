@@ -2,7 +2,7 @@
     <aside class="navigation">
         <nav>
             <div class="sidebar content-box-compose">
-                <!-- <button id="compose" class="btn btn-lg btn-danger" data-toggle="modal" data-target="#myModal">Test</button> -->
+                <button id="help" class="btn btn-lg btn-danger" data-toggle="modal" data-target="#myModal">Help</button>
             </div>
 
             <?php
