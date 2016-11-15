@@ -77,6 +77,7 @@
                     <option value="sales">Sales</option>
                     <option value="purchases">Purchases</option>
                     <option value="bottle-log">Bottle Log</option>
+                    <option value="stock">Stock</option>
                 </select>
                 <span class="help-block small">What report type would you like to see ?</span>
                 </div>

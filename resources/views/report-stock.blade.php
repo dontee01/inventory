@@ -1,5 +1,5 @@
 @extends('layouts.layout')
-@section('title', '::.Sales Report')
+@section('title', '::.Stock Report')
 @section('content')
 
 
@@ -29,94 +29,61 @@
         </div>
         @endif
 <div align="center">
-    <h4>Sales Report</h4>
+    <h4>Stock Report</h4>
 </div>
 <table class="table table-hover table-striped" id="table-custom">
     <thead>
     <tr>
-        <th>Date</th>
-        <th>Transaction Ref</th>
-        <th>Name</th>
         <th>Item</th>
-        <th>Quantity</th>
-        <th>Unit Price</th>
-        <th>Total</th>
+        <th>Bottles with Content (Crates)</th>
+        <th>Empty Bottles (Crates)</th>
+        <th>Quantity (For Non RGB)</th>
+        <th>Total (N)</th>
     </tr>
     </thead>
     <tbody>
     @foreach($items as $key=>$item)
     <tr>
-        <td>{{$item['created']}}</td>
-        <td>{{$item['transaction_ref']}}</td>
-        <td>{{$item['d_name']}}</td>
         <td>{{$item['i_name']}}</td>
-        <td>
-        {{$item['qty']}}
-        </td>
-        <td>{{$item['price_unit']}}
+        <td>{{$item['qty_content']}}</td>
+        <td>{{$item['qty_bottle']}}</td>
+        <td>{{$item['qty']}}</td>
+        <td>{{$item['amount']}}
         <input type="hidden" id="id-add-item" value="{{$item['id']}}" />
-        </td>
-        <td>
-        {{$item['price_total']}}
         </td>
     </tr>
     @endforeach
     <tr>
-        <td colspan="6" align="right">
+        <td colspan="4" align="right">
         <strong>Grand Total</strong>
         </td>
         <td>
-        <strong>{{$price_total}}</strong>
+        <strong>{{$amount_total}}</strong>
         </td>
     </tr>
     </tbody>
 </table>
-
 <div align="center">
-    <h4>Empty Bottles</h4>
+    <h4>Empty Crates</h4>
 </div>
+
 <table class="table table-hover table-striped" id="table-custom">
     <thead>
     <tr>
-        <th>Date</th>
-        <th>Transaction Ref</th>
-        <th>Name</th>
-        <th>Item</th>
+        <th>Category</th>
         <th>Quantity</th>
-        <th>Unit Price</th>
-        <th>Comment</th>
-        <th>Total</th>
+        <th>Total (N)</th>
     </tr>
     </thead>
     <tbody>
-    @foreach($bottle_orders as $key=>$order)
+    @foreach($categories as $key=>$category)
     <tr>
-        <td>{{$order['created']}}</td>
-        <td>{{$order['transaction_ref']}}</td>
-        <td>{{$order['d_name']}}</td>
-        <td>{{$order['i_name']}}</td>
-        <td>
-        {{$order['qty']}}
-        </td>
-        <td>{{$order['price_unit']}}
-        <input type="hidden" id="id-add-item" value="{{$order['id']}}" />
-        </td>
-        <td>
-        {{$order['comment']}}
-        </td>
-        <td>
-        {{$order['price_total']}}
+        <td>{{$category['cat_name']}}</td>
+        <td>{{$category['total_rgb']}}</td>
+        <td>{{$category['amount_total']}}
         </td>
     </tr>
     @endforeach
-    <tr>
-        <td colspan="7" align="right">
-        <strong>Grand Total</strong>
-        </td>
-        <td>
-        <strong>{{$price_total_bottle}}</strong>
-        </td>
-    </tr>
     </tbody>
 </table>
 

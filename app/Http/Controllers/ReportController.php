@@ -11,6 +11,7 @@ use App\Customer;
 use App\Supplier;
 use App\Driver;
 use App\Item;
+use App\Cart;
 use App\Pending_order;
 use App\Sales_log;
 use App\Purchase_log;
@@ -116,12 +117,12 @@ class ReportController extends Controller
                     $item_arr = [
                         'id' => $order->id, 'i_name' => $item_name, 'd_name' => $order->d_name, 'qty' => $quantity, 
                         'price_total' => $order->price_total, 'transaction_ref' => $order->transaction_ref, 
-                        'created' => $order->updated_at, 'comment' => $order->comment
+                        'created' => $order->updated_at, 'price_unit' => $order->price_unit, 'comment' => $order->comment
                     ];
                     array_push($result_bottle, $item_arr);
                 }
             // });
-        return view('report-sales', ['items' => $result, 'bottle_orders' => $result_bottle, 'price_total' => number_format($total, 2), 'price_total_bottle' => $total_bottle]);
+        return view('report-sales', ['items' => $result, 'bottle_orders' => $result_bottle, 'price_total' => number_format($total, 2), 'price_total_bottle' => number_format($total_bottle, 2) ]);
         }
 
         else if ($report_type == 'purchases')
@@ -156,11 +157,12 @@ class ReportController extends Controller
                     $item_arr = [
                         'id' => $order->id, 'i_name' => $item_name, 's_name' => $order->s_name, 'qty' => $order->qty, 
                         'price_total' => $order->price_total, 'transaction_ref' => $order->transaction_ref, 
-                        'exchange_type' => $exchange_type, 'created' => $order->updated_at
+                        'exchange_type' => $exchange_type, 'created' => $order->updated_at, 
+                        'price_unit' => $order->price_unit
                     ];
                     array_push($result, $item_arr);
                 }
-        return view('report-purchase', ['orders' => $result, 'price_total' => $total]);
+        return view('report-purchase', ['items' => $result, 'price_total' => number_format($total, 2)]);
         }
 
 
@@ -195,12 +197,12 @@ class ReportController extends Controller
                     $item_name = $cat_name.'  '.$cart_item->i_name;
                     $item_arr = [
                         'id' => $order->id, 'i_name' => $item_name, 'error_type' => $order->error_type, 
-                        'qty' => $order->qty_bottle, 'amount_paid' => $order->amount_paid, 'd_name' => $d_name, 
+                        'qty' => $order->qty_bottle, 'amount_paid' => $order->amount_paid, 'd_name' => $order->d_name, 
                         'transaction_ref' => $order->transaction_ref, 'created' => $order->updated_at, 'comment' => $order->comment
                     ];
                     array_push($result, $item_arr);
                 }
-        return view('report-bottle', ['orders' => $result, 'amount_total' => $total]);
+        return view('report-bottle', ['items' => $result, 'amount_total' => $total]);
         }
 
         else if ($report_type == 'stock')
@@ -227,15 +229,15 @@ class ReportController extends Controller
                         // var_dump(session()->get('sales_cart_session'));exit;
                     $cat_name = Category::find($order->categories_id)
                     ->value('name');
-                    $item_name = $cat_name.'  '.$cart_item->i_name;
+                    $item_name = $cat_name.'  '.$order->i_name;
                     $item_arr = [
                         'id' => $order->id, 'i_name' => $item_name, 'qty_content' => $order->qty_content, 
-                        'qty_bottle' => $order->qty_bottle, 'qty' => $order->qty, 'amount' => $order->amount, 
+                        'qty_bottle' => $order->qty_bottle, 'qty' => $order->qty, 'amount' => number_format($amount, 2), 
                         'is_rgb' => $order->is_rgb, 'created' => $order->updated_at
                     ];
                     array_push($result, $item_arr);
                 }
-                $categories = Cart::all();
+                $categories = Category::all();
                 $result_all = [];
                 // $res_arr = [];
                 // $total_item = 0;
@@ -251,21 +253,22 @@ class ReportController extends Controller
                         if ($item->is_rgb == 1)
                         {
                             $rgb = 1;
-                            $total_item_rgb += $order->qty_content + $order->qty_bottle;
+                            $total_item_rgb += $item->qty_content + $item->qty_bottle;
                         }
                     }
-
+// print_r($rgb);exit;
                     if ($rgb == 1)
                     {
-                        $amount_total = round($total_item_rgb * 1200, 2);
+                        $total_item_rgb = $cust->get_empty_bottle_info($total_item_rgb);
+                        $amount_total = round(($total_item_rgb * 1200), 2);
                         $item_arr = [
-                            'catid' => $category->id, 'cat_name' => $category->name, 'total_rgb' => $total_item_rgb, 
-                            'amount_total' => $amount_total
+                            'cat_id' => $category->id, 'cat_name' => $category->name, 'total_rgb' => $total_item_rgb, 
+                            'amount_total' => number_format($amount_total, 2)
                         ];
                         array_push($result_all, $item_arr);
                     }
                 }
-        return view('report-stock', ['orders' => $result, 'amount_total' => $total, 'products' => $result_all]);
+        return view('report-stock', ['items' => $result, 'amount_total' => number_format($total, 2), 'categories' => $result_all]);
         }
 
     }

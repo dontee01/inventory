@@ -1,5 +1,5 @@
 @extends('layouts.layout')
-@section('title', '::.Sales Report')
+@section('title', '::.Purchases Report')
 @section('content')
 
 
@@ -29,15 +29,16 @@
         </div>
         @endif
 <div align="center">
-    <h4>Sales Report</h4>
+    <h4>Purchases Report</h4>
 </div>
 <table class="table table-hover table-striped" id="table-custom">
     <thead>
     <tr>
         <th>Date</th>
         <th>Transaction Ref</th>
-        <th>Name</th>
+        <th>Supplier</th>
         <th>Item</th>
+        <th>Exchange Type</th>
         <th>Quantity</th>
         <th>Unit Price</th>
         <th>Total</th>
@@ -48,11 +49,12 @@
     <tr>
         <td>{{$item['created']}}</td>
         <td>{{$item['transaction_ref']}}</td>
-        <td>{{$item['d_name']}}</td>
+        <td>{{$item['s_name']}}</td>
         <td>{{$item['i_name']}}</td>
         <td>
-        {{$item['qty']}}
+        {{$item['exchange_type']}}
         </td>
+        <td>{{$item['qty']}}</td>
         <td>{{$item['price_unit']}}
         <input type="hidden" id="id-add-item" value="{{$item['id']}}" />
         </td>
@@ -62,59 +64,11 @@
     </tr>
     @endforeach
     <tr>
-        <td colspan="6" align="right">
-        <strong>Grand Total</strong>
-        </td>
-        <td>
-        <strong>{{$price_total}}</strong>
-        </td>
-    </tr>
-    </tbody>
-</table>
-
-<div align="center">
-    <h4>Empty Bottles</h4>
-</div>
-<table class="table table-hover table-striped" id="table-custom">
-    <thead>
-    <tr>
-        <th>Date</th>
-        <th>Transaction Ref</th>
-        <th>Name</th>
-        <th>Item</th>
-        <th>Quantity</th>
-        <th>Unit Price</th>
-        <th>Comment</th>
-        <th>Total</th>
-    </tr>
-    </thead>
-    <tbody>
-    @foreach($bottle_orders as $key=>$order)
-    <tr>
-        <td>{{$order['created']}}</td>
-        <td>{{$order['transaction_ref']}}</td>
-        <td>{{$order['d_name']}}</td>
-        <td>{{$order['i_name']}}</td>
-        <td>
-        {{$order['qty']}}
-        </td>
-        <td>{{$order['price_unit']}}
-        <input type="hidden" id="id-add-item" value="{{$order['id']}}" />
-        </td>
-        <td>
-        {{$order['comment']}}
-        </td>
-        <td>
-        {{$order['price_total']}}
-        </td>
-    </tr>
-    @endforeach
-    <tr>
         <td colspan="7" align="right">
         <strong>Grand Total</strong>
         </td>
         <td>
-        <strong>{{$price_total_bottle}}</strong>
+        <strong>{{$price_total}}</strong>
         </td>
     </tr>
     </tbody>

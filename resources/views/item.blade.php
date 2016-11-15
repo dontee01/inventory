@@ -29,7 +29,7 @@
         </div>
         @endif
 <div class="pull-right">
-	<a href="{{url('item/add')}}" class="btn btn-default btn-rounded"><i class="fa fa-add"></i>Add Item</a>
+	<a href="{{url('item/add')}}" class="btn btn-default btn-rounded"><i class="pe pe-7s-plus"></i>Add Item</a>
 </div>
 <table class="table table-hover table-striped" id="table-custom">
     <thead>

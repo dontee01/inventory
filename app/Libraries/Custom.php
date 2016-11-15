@@ -225,6 +225,40 @@ class Custom
         return $res;
     }
 
+    function store_empty_bottle_val($val)
+    {
+        $res = round($val * 24);
+        return $res;
+    }
+
+    function get_empty_bottle_info($val)
+    {
+        $val = $this->store_empty_bottle_val($val);
+        $res = floor($val / 24);
+        $mod = $val % 24;
+
+        if ($res < 2)
+        {
+            $crate = 'Crate';
+        }
+        if ($res > 1)
+        {
+            $crate = 'Crates';
+        }
+
+        if ($mod < 2)
+        {
+            $bottle = 'Bottle';
+        }
+        if ($mod > 1)
+        {
+            $bottle = 'Bottles';
+        }
+
+        $result = $res.' '.$crate.' and '.$mod.' '.$bottle;
+        return $result;
+    }
+
 
 
 }
