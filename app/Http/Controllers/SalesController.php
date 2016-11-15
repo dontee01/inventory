@@ -7,11 +7,13 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Category;
 use App\Customer;
+use App\Supplier;
 use App\Driver;
 use App\Item;
 use App\Cart;
 use App\Pending_order;
 use App\Sales_log;
+use App\Bottle_sale;
 
 use DB;
 use App\Libraries\Custom;
@@ -461,6 +463,73 @@ class SalesController extends Controller
         \Session::forget('transaction_ref');
         return view('pending-sales', ['pending_orders' => $result]);
 
+    }
+
+
+
+    public function bottle_add(Request $request)
+    {
+        $cust = $this->custom;
+
+        $cart = new Bottle_sale;
+        $cart->store_users_id = \Session::get('id');
+        // $cart->i_name = strtoupper($request->item);
+        $cart->item_id = $request->item_id;
+        $cart->s_name = $request->supplier;
+        $cart->c_name = $request->customer;
+        $cart->d_name = $request->driver;
+        $cart->comment = $request->comment;
+        // $cart->is_bottle = 1;
+        $cart->price_unit = $request->price;
+        $cart->price_total = round($request->sub_total, 2);
+        $cart->transaction_ref = $request->transaction_ref;
+      
+        // $cart->cart_session = \Session::get('purchase_cart_session');
+        
+
+        DB::transaction(function() use ($request, $cart){
+
+                // no-exchange<==>0
+                // $qty_content = $item->qty_content + $request->quantity_content;
+            $item = Item::where('id', $request->item_id)
+            ->decrement('qty_bottle', $request->quantity);
+
+            $cart->qty_bottle_content = $request->quantity;
+            $cart->save();
+
+        });
+
+        \Session::forget('transaction_ref');
+
+        $request->session()->flash('flash_message_success', 'Transaction successful');
+        return redirect()->back();
+    }
+
+    public function bottle_show()
+    {
+        $cust = $this->custom;
+        
+        $suppliers = Supplier::all();
+        $customers = Customer::all();
+        $drivers = Driver::all();
+        $items = Item::all();
+        $result = [];
+        $result_cart = [];
+
+        foreach ($items as $item)
+        {
+            $cat_name = Category::find($item->categories_id)
+            ->value('name');
+            $item_name = $cat_name.' + '.$item->i_name;
+            $item_arr = [
+                'id' => $item->id, 'i_name' => $item_name
+            ];
+            array_push($result, $item_arr);
+        }
+
+        $token_session = $cust->generate_session('test@random.pos', $cust->time_now());
+        \Session::put('transaction_ref', $token_session);
+        return view('sales-bottle', ['items' => $result, 'suppliers' => $suppliers, 'customers' => $customers, 'drivers' => $drivers, 'details' => [] ]);
     }
 
 

@@ -45,7 +45,7 @@
                         Products
                     </h1>
                     <div class="small">
-                        <select class="form-control" onchange="location = this.value;">
+                        <select class="input-sm" onchange="location = this.value;">
                             <option value="">Select an item</option>
                         @foreach($items as $item)
                             <option value="{{url('purchase/show/'.$item['id'])}}">{{$item['i_name']}}</option>

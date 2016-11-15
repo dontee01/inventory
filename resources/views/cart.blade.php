@@ -38,13 +38,13 @@
         <div class="row">
 
         <div class="col-md-12">
-            <h1>Inventory App</h1>
+            <!-- <h1>Inventory App</h1> -->
 
                 <div class="m-t-sm">
                 @if(count($cart_items) == 0)
-                <div class="small">
+                <h3>
                 Cart is empty
-                </div>
+                </h3>
                 @else
                 <table class="table table-hover table-striped" id="table-custom">
                     <thead>

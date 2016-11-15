@@ -27,7 +27,5 @@ class Bottle_sale extends Model
     protected $guarded = ['id'];
     // protected $fillable = array('name', 'email');
 
-    public static $rules = ['i_name' => 'required']
-        // 'email' => 'required|email|min:5'
-    );
+    public static $rules = ['i_name' => 'required'];
 }

@@ -19,6 +19,8 @@
     
     {!!Html::style('vendor/toastr/toastr.min.css')!!}
 
+    {!!Html::style('vendor/tcal.css')!!}
+
     <!-- App styles -->
     
     {!!Html::style('styles/pe-icons/pe-icon-7-stroke.css')!!}
@@ -77,6 +79,12 @@
 {!!Html::script('vendor/flot/jquery.flot.resize.min.js')!!}
 
 {!!Html::script('vendor/flot/jquery.flot.spline.js')!!}
+
+{!!Html::script('vendor/tcal.js')!!}
+
+{!!Html::script('vendor/moment/moment.js')!!}
+
+{!!Html::script('vendor/bootstrap/js/bootstrap-datetimepicker.min.js')!!}
 
 
 
@@ -147,6 +155,17 @@
       $('#delete-add-item').on('click', function(e) {
         
       });
+
+      $('#datetimepicker6').datetimepicker();
+        $('#datetimepicker7').datetimepicker({
+            useCurrent: false //Important! See issue #1075
+        });
+        $("#datetimepicker6").on("dp.change", function (e) {
+            $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
+        });
+        $("#datetimepicker7").on("dp.change", function (e) {
+            $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+        });
 
     })
 </script>

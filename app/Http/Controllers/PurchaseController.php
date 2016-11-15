@@ -199,6 +199,70 @@ class PurchaseController extends Controller
     }
 
 
+
+    public function bottle_add(Request $request)
+    {
+        $cust = $this->custom;
+
+        $cart = new Purchase_log;
+        // $cart->store_users_id = \Session::get('id');
+        // $cart->i_name = strtoupper($request->item);
+        $cart->item_id = $request->item_id;
+        $cart->s_name = $request->supplier;
+        // $cart->no_exchange = $request->purchase_type;
+        $cart->is_bottle = 1;
+        $cart->is_rgb = 1;
+        $cart->price_unit = $request->price;
+        $cart->price_total = round($request->sub_total, 2);
+        $cart->transaction_ref = $request->transaction_ref;
+      
+        // $cart->cart_session = \Session::get('purchase_cart_session');
+        
+
+        DB::transaction(function() use ($request, $cart){
+
+                // no-exchange<==>0
+                // $qty_content = $item->qty_content + $request->quantity_content;
+            $item = Item::where('id', $request->item_id)
+            ->increment('qty_bottle', $request->quantity);
+
+            $cart->qty = $request->quantity;
+            $cart->save();
+
+        });
+
+        \Session::forget('transaction_ref');
+
+        $request->session()->flash('flash_message_success', 'Transaction successful');
+        return redirect()->back();
+    }
+
+    public function bottle_show()
+    {
+        $cust = $this->custom;
+
+        $suppliers = Supplier::all();
+        $items = Item::all();
+        $result = [];
+        $result_cart = [];
+
+        foreach ($items as $item)
+        {
+            $cat_name = Category::find($item->categories_id)
+            ->value('name');
+            $item_name = $cat_name.' + '.$item->i_name;
+            $item_arr = [
+                'id' => $item->id, 'i_name' => $item_name
+            ];
+            array_push($result, $item_arr);
+        }
+
+        $token_session = $cust->generate_session('test@random.pos', $cust->time_now());
+        \Session::put('transaction_ref', $token_session);
+        return view('purchase-bottle', ['items' => $result, 'suppliers' => $suppliers, 'details' => [] ]);
+    }
+
+
     public function cart_show()
     {
         $result = [];
@@ -238,7 +302,7 @@ class PurchaseController extends Controller
     public function cart_checkout(Request $request)
     {
         $transaction_ref = $request->transaction_ref;
-        
+
         // $orders = Cart_purchase::where('transaction_ref', $transaction_ref)
         //         ->get();
         //         var_dump($transaction_ref);

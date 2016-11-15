@@ -134,6 +134,10 @@ Route::post('/sales/cart/delete/{id}', 'SalesController@cart_delete');
 
 Route::post('/sales/cart/checkout', 'SalesController@cart_checkout');
 
+Route::get('/sales/bottle', 'SalesController@bottle_show');
+
+Route::post('/sales/bottle/add', 'SalesController@bottle_add');
+
 
 
 Route::get('/purchase', 'PurchaseController@index');
@@ -146,10 +150,25 @@ Route::post('/purchase/cart/add', 'PurchaseController@cart_add');
 
 Route::post('/purchase/cart/checkout', 'PurchaseController@cart_checkout');
 
+Route::get('/purchase/bottle', 'PurchaseController@bottle_show');
+
+Route::post('/purchase/bottle/add', 'PurchaseController@bottle_add');
+
 // Route::get('/purchase/transaction/{transaction_ref}', 'PurchaseController@show_order');
 
 Route::post('/purchase/cart/delete/{id}', 'PurchaseController@cart_delete');
 
+
+
+Route::get('/bottle/show', 'BottleController@bottle_show');
+
+Route::post('/bottle/log', 'BottleController@bottle_log');
+
+
+
+Route::get('/report', 'ReportController@index');
+
+Route::post('/report/show', 'ReportController@report');
 
 
 Route::get('/print', function () {

@@ -42,11 +42,20 @@
                             <li><a class="icon-people" id="groups" href="{{url('suppliers')}}">Suppliers</a></li>
                             <li><a class="icon-people" id="groups" href="{{url('drivers')}}">Drivers</a></li>
                             <li><a class="icon-people" id="groups" href="{{url('users')}}">Users</a></li>
+                            <li><a class="icon-people" id="groups" href="{{url('purchase/bottle')}}">Purchase Bottle</a></li>
+                            <li><a class="icon-people" id="groups" href="{{url('sales/bottle')}}">Bottle Sales</a></li>
+                            <li><a class="icon-people" id="groups" href="{{url('bottle/show')}}">Bottle Log</a></li>
                             <!--<li><a class="icon-people" id="manage-group" href="#manage-group">Manage Group</a></li>-->
                             <!-- <li><a  class="icon-person" id="manage-contacts" href="#manage-contacts">Manage Contacts</a></li> -->
 <!--                            <li><a class="icon-save" href="">Backup Contacts</a></li>
                             <li><a class="icon-restore" href="">Restore Contacts</a></li>-->
                     </ul>
+                </li>
+
+                <li >
+                    <a class="nav-cat" href="{{url('report')}}" ><img class="parent-icon" src="../images/message_icon.svg">
+                        Report<span class="sub-nav-icon"> <i class="stroke-arrow"></i> </span>
+                    </a>
                 </li>
 
 

@@ -211,6 +211,21 @@ class Custom
         return $d && $d->format($format) == $date;
     }
 
+    function format_date($date, $format = 'Y-m-d')
+    {
+        // $d = DateTime::createFromFormat($format, $date);
+        $date = date_create($date);
+        return date_format($date, $format);
+    }
+    
+    function get_empty_bottle_val($val)
+    {
+        $res = $val / 24;
+        $res = round($res, 3);
+        return $res;
+    }
+
+
 
 }
 
